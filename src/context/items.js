@@ -14,16 +14,18 @@ function Provider({ children }) {
 
   const editItemById = async (id, description) => {
     const response = await axios.put(`http://localhost:3001/items/${id}`, {description});
-
-    const updatedItems = fetchItems.map((item) => {
-      if (item.id === id) {
-        return { ...item, ...response.data };
-      }
-
-      return item;
-    });
-
-    setItems(updatedItems);
+    if(response?.data?.id) {
+      const newItemsState = items.map(item => {
+        if(item.id === id) {
+            return {
+                ...item,
+                ...response.data
+            }
+        }
+        return item
+      })
+      setItems(newItemsState)
+    }
   };
 
   const deleteItemById = async (id) => {

@@ -17,9 +17,8 @@ function ItemCreate() {
 
   return (
     <div className="item-create">
-      <h3>Add a item</h3>
       <form onSubmit={handleSubmit}>
-        <label>Description</label>
+        <label>Add a item description</label>
         <input className="input" value={description} onChange={handleChange} />
         <button className="button">Create!</button>
       </form>
